@@ -1,0 +1,17 @@
+<div *ngIf="!produtos">Listando os produtos...</div>
+
+<div class="container" *ngIf="produtos">
+   <div class="row">
+     <div class="col-md-4 mb-4" *ngFor="let p of produtos">
+       <a (click)="abrirProduto(p)" class="cursor-pointer">
+        <div class="card">
+           <img class="card-top custom-card-loja" src="{{baseURL + p.nomeArquivo}}" />
+           <div class="card-body">
+             <div class="card-text">{{p.descricao | truncate: 50}}</div>
+             <h5 class="h5 text-center">R$ {{ p.preco }}</h5>
+           </div>
+        </div>
+       </a>
+     </div>
+   </div>
+</div>
