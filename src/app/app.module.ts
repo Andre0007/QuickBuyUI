@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { TruncateModule } from 'ng2-truncate';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { LoginComponent } from './Components/usuario/login/login.component';
 import { PedidoService } from './Services/pedido.service';
 import { ProdutoService } from './Services/Produto.service';
 import { UsuarioService } from './Services/Usuario.service';
+import { GuardaRotas } from './Utils/GuardaRotas.routing';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,19 @@ import { UsuarioService } from './Services/Usuario.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     TruncateModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'produto', component: ProdutoComponent, canActivate:[GuardaRotas] },
+      { path: 'entrar', component: LoginComponent },
+      { path: 'novo-usuario', component: CadastroUsuarioComponent },
+      { path: 'pesquisa-produto', component: PesquisaProdutoComponent, canActivate:[GuardaRotas] },
+      { path: 'loja-produto', component: LojaProdutoComponent },
+      { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate:[GuardaRotas] },
+      { path: 'compra-realizada-sucesso', component: LojaCompraRealizadaComponent }
+    ])
   ],
   providers: [UsuarioService, ProdutoService, PedidoService],
   bootstrap: [AppComponent]

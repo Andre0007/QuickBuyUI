@@ -10,7 +10,7 @@ import { Usuario } from '../Models/Usuario';
 export class UsuarioService {
 
   private _usuario: Usuario = new Usuario();
-  
+
   constructor(private http: HttpClient) { }
 
   set usuario(usuario: Usuario) {
@@ -29,7 +29,7 @@ export class UsuarioService {
   }
 
   public usuario_autenticado(): boolean {
-    return this._usuario != null && this._usuario.email != "" && this._usuario.senha != "";
+    return this._usuario != null && this._usuario != undefined  && this._usuario.email != "" && this._usuario.email != undefined && this._usuario.senha != "" && this._usuario.senha != undefined;
   }
 
   public usuario_administrador(): boolean{

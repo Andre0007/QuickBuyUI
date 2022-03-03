@@ -10,11 +10,11 @@ import { UsuarioService } from 'src/app/Services/Usuario.service';
 })
 export class LoginComponent implements OnInit {
 
-  public usuario?: Usuario = new Usuario;
+  public usuario: Usuario = new Usuario;
   public returnUrl?: string;
   public mensagem?: string;
   public ativar_spinner?: boolean;
-  constructor(private router: Router, private  activatedRouter: ActivatedRoute, private usuarioService: UsuarioService) {    
+  constructor(private router: Router, private  activatedRouter: ActivatedRoute, private usuarioService: UsuarioService) {
   }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   entrar(){
     this.ativar_spinner = true;
     this.usuarioService.verificarUsuario(this.usuario!).subscribe(usuario_json => {
-      // essa linha será executada no caso de retorno sem erros                          
+      // essa linha será executada no caso de retorno sem erros
       this.usuarioService.usuario = usuario_json;
 
       if (this.returnUrl == null) {

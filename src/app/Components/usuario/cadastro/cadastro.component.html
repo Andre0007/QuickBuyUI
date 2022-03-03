@@ -14,10 +14,10 @@
            email required />
 
     <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div *ngIf="email.errors.required">
+      <div *ngIf="email.errors?.['required']">
         Email é de preenchimento obrigatório
       </div>
-      <div *ngIf="email.errors.email">
+      <div *ngIf="email.errors?.['email']">
         Email está no formato inválido
       </div>
     </div>
@@ -33,9 +33,9 @@
             'is-valid':senha.valid && (senha.dirty || senha.touched)
            }"
            required />
-           
+
     <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
-      <div *ngIf="senha.errors.required">
+      <div *ngIf="senha.errors?.['required']">
         Senha deve ser informada
       </div>
     </div>
@@ -53,7 +53,7 @@
            required />
 
     <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
-      <div *ngIf="nome.errors.required">
+      <div *ngIf="nome.errors?.['required']">
         Nome é de preenchimento obrigatório
       </div>
     </div>
@@ -71,7 +71,7 @@
            required />
 
     <div class="invalid-feedback mb-2" *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)">
-      <div *ngIf="sobreNome.errors.required">
+      <div *ngIf="sobreNome.errors?.['required']">
         Sobre Nome é de preenchimento obrigatório
       </div>
     </div>

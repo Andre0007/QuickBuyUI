@@ -7,7 +7,7 @@
         <div class="card">
            <img class="card-top custom-card-loja" src="{{baseURL + p.nomeArquivo}}" />
            <div class="card-body">
-             <div class="card-text">{{p.descricao | truncate: 50}}</div>
+             <div class="card-text">{{p.descricao! | truncate: 50}}</div>
              <h5 class="h5 text-center">R$ {{ p.preco }}</h5>
            </div>
         </div>

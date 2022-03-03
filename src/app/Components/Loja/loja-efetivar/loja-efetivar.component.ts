@@ -28,11 +28,13 @@ export class LojaEfetivarComponent implements OnInit {
     this.atualizarTotal();
   }
 
-  atualizarPreco(produto: Produto, quantidade: number) {
+  atualizarPreco(produto: Produto, event: any) {
+
+    let quantidade = event.target.valueAsNumber;
 
     if (!produto.precoOriginal)
         produto.precoOriginal = produto.preco;
-    
+
     if (quantidade <= 0) {
         quantidade = 1;
         produto.quantidade = quantidade;
@@ -61,7 +63,7 @@ export class LojaEfetivarComponent implements OnInit {
                 console.log(pedidoId);
                 sessionStorage.setItem("pedidoId", pedidoId.toString());
                 this.produtos = [];
-                this.carrinhoCompras.limparCarrinhoCompras();                   
+                this.carrinhoCompras.limparCarrinhoCompras();
                 this.router.navigate(["/compra-realizada-sucesso"]);
             },
             e => {
@@ -69,12 +71,12 @@ export class LojaEfetivarComponent implements OnInit {
           });
   }
 
-  criarPedido(): Pedido 
+  criarPedido(): Pedido
   {
     let pedido = new Pedido();
     pedido.usuarioId = this.usuarioServico.usuario.id;
     pedido.cep = "122323";
-    pedido.cidade = "Sao Paulo";        
+    pedido.cidade = "Sao Paulo";
     pedido.estado = "Sao Paulo ";
     pedido.dataPrevisaoEntrega = new Date();
     pedido.formaPagamentoId = 1;
@@ -86,7 +88,7 @@ export class LojaEfetivarComponent implements OnInit {
     for (let produto of this.produtos) {
       let itemPedido = new ItemPedido();
       itemPedido.produtoId = produto.id;
-      
+
       if (!produto.quantidade)
           produto.quantidade = 1;
       itemPedido.quantidade = produto.quantidade;
@@ -94,7 +96,7 @@ export class LojaEfetivarComponent implements OnInit {
       pedido.itensPedido.push(itemPedido);
     }
 
-    return pedido; 
+    return pedido;
   }
 
 }

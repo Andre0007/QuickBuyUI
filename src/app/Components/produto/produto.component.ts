@@ -22,16 +22,23 @@ export class ProdutoComponent implements OnInit {
       this.produto = JSON.parse(produtoSession);
     } else {
       this.produto = new Produto();
-    }    
+    }
   }
 
-  inputChange(files: FileList) {
+  inputChange(event: any) {
+
+    debugger;
+
+    //let files = new FileList();
+
+    let files = event.currentTarget.files as FileList;
+
     this.arquivoSelecionado = files.item(0)!;
     this.ativar_spinner = true;
     this.produtoService.enviarArquivo(this.arquivoSelecionado)
       .subscribe(
         nomeArquivo => {
-          this.produto.nomeArquivo = nomeArquivo;          
+          this.produto.nomeArquivo = nomeArquivo;
           console.log(nomeArquivo);
           this.ativar_spinner = false;
         },
@@ -47,7 +54,7 @@ export class ProdutoComponent implements OnInit {
     if(this.produto.id != null || this.produto.id != undefined){
       this.produtoService.alterar(this.produto)
       .subscribe(
-        produtoJson => {          
+        produtoJson => {
           console.log(produtoJson);
           this.desativarEspera();
           this.router.navigate(['/pesquisa-produto']);
@@ -56,12 +63,12 @@ export class ProdutoComponent implements OnInit {
           console.log(e.error);
           this.mensagem = e.error;
           this.desativarEspera();
-        } 
+        }
       );
     }else{
       this.produtoService.cadastrar(this.produto)
       .subscribe(
-        produtoJson => {          
+        produtoJson => {
           console.log(produtoJson);
           this.desativarEspera();
           this.router.navigate(['/pesquisa-produto']);
@@ -70,11 +77,11 @@ export class ProdutoComponent implements OnInit {
           console.log(e.error);
           this.mensagem = e.error;
           this.desativarEspera();
-        } 
+        }
       );
-    }    
+    }
   }
-  
+
   public ativarEspera() {
     this.ativar_spinner = true;
   }

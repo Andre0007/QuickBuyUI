@@ -12,7 +12,7 @@
        #nome="ngModel"
        required />
 <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched) ">
-  <div *ngIf="nome.errors.required">
+  <div *ngIf="nome.errors?.['required']">
     Nome do produto é de preenchimento obrigatório
   </div>
 </div>
@@ -31,10 +31,10 @@
        required
        minlength="50"/>
 <div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched) ">
-  <div *ngIf="descricao.errors.required">
+  <div *ngIf="descricao.errors?.['required']">
     Descrição do produto é de preenchimento obrigatório
   </div>
-  <div *ngIf="descricao.errors.minlength">
+  <div *ngIf="descricao.errors?.['minlength']">
     Campo deve ter no mínimo 50 caracteres
   </div>
 </div>
@@ -54,14 +54,14 @@
        required/>
 
 <div class="invalid-feedback mb-2" *ngIf="preco.invalid && (preco.dirty || preco.touched) ">
-  <div *ngIf="preco.errors.required">
+  <div *ngIf="preco.errors?.['required']">
     Preço do produto é de preenchimento obrigatório
   </div>
 </div>
 
 <div class="input-group mb-2">
   <div class="custom-file col-md-4">
-    <input type="file" class="custom-file-input" id="inputFile" (change)="inputChange($event.target.files)" />
+    <input type="file" class="custom-file-input" id="inputFile" (change)="inputChange($event)" />
     <label for="inputFile" class="custom-file-label">Escolha uma foto</label>
   </div>
 </div>
