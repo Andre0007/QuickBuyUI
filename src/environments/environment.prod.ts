@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  UrlAPI: ""
+  UrlAPI: "https://quickbuy-api.herokuapp.com"
 };
