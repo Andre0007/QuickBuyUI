@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/quick-buy.ui'),
+      dir: require('path').join(__dirname, './coverage/quickbuyui'),
       subdir: '.',
       reporters: [
         { type: 'html' },
